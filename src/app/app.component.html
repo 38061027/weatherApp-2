@@ -1,36 +1,46 @@
-
-<main class="container">
+<main class="container" *ngIf="data">
 
   <h1 class="title">Clima agora</h1>
-<div>
-
-      <input  type="text" class="search-city" placeholder="Pesquisar cidade" [(ngModel)]="cityName">
-      <button (click)="getWeather(cityName)" class="search-btn">Pesquisar</button>
-</div>
+  <div class="search-content">
+    <input type="text" class="search-city" placeholder="Pesquisar cidade" [(ngModel)]="cityName">
+    <button (click)="getWeather(cityName)" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </div>
 
   <div class="content">
-      <div class="box-1">
-          <p>Current weather</p>
-          <p>6:36 PM</p>
-      </div>
+    <div class="box-1">
+      <p>Current weather</p>
+      <p>6:36 PM</p>
+    </div>
 
-      <div class="box-2">
-        <h3>{{data.name}}</h3>
-          <div class="graus">
-              <img [src]="imgCloud" alt="">
-              <h1>{{data.main.temp}}</h1>
-          </div>
-          <h4>{{data.weather[0].description}}</h4>
-
+    <div class="box-2">
+      <h3 class="city">{{data.name}}</h3>
+      <div class="graus">
+        <img [src]="data?.weather[0]?.iconURL" alt="">
+        <h1>{{ data?.main?.temp }}</h1>
       </div>
+      <h4>{{data.weather[0].description}}</h4>
 
-      <div class="box-3">
-          <i class="fa-solid fa-water"></i>
-          <p>{{data.wind.deg}}</p>
-          <i class="fa-solid fa-wind"></i>
-          <p>{{data.wind.speed}} Km/h</p>
-       
+    </div>
+
+
+    <div class="min-max">
+
+      <img [src]="data?.weather[0]?.iconURL" alt="">
+      <div class="content-media">
+        <h4>{{data.main.temp_min}} / {{data.main.temp_max}}</h4>
       </div>
+    </div>
+
+
+    <div class="box-3">
+      <i class="fa-solid fa-water"></i>
+      <p>{{data.wind.deg}}</p>
+      <i class="fa-solid fa-wind"></i>
+      <p>{{data.wind.speed}} Km/h</p>
+      <i class="fa-solid fa-droplet"></i>
+      <p>{{data.main.humidity}} %</p>
+    </div>
+
 
   </div>
 </main>
