@@ -11,8 +11,11 @@ export class AppComponent implements OnInit {
   title = 'weather-app-2';
   cityName: string = '';
   data: any
+  currentHour!: Date;
 
-  constructor(private service: DataService) { }
+  constructor(private service: DataService) {
+    this.getCurrentHour();
+   }
 
 
   ngOnInit(): void {
@@ -32,6 +35,12 @@ export class AppComponent implements OnInit {
       this.data = res;
       console.log(res);
     });
+  }
+
+  getCurrentHour() {
+    setInterval(() => {
+      this.currentHour = new Date();
+    }, 1000);
   }
 
 }
